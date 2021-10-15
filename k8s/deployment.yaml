@@ -1,0 +1,149 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: healthchecks-deployment
+  labels:
+    app: healthchecks
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: healthchecks
+  template:
+    metadata:
+      labels:
+        app: healthchecks
+    spec:
+      containers:
+      - name: healthchecks
+        image: 630637833070.dkr.ecr.ap-southeast-1.amazonaws.com/healthchecks
+        ports:
+        - containerPort: 8000
+        imagePullPolicy: Always
+        env:
+        - name: ALLOWED_HOSTS
+          valueFrom:
+            configMapKeyRef:
+              name: healthchecks-configmap
+              key: ALLOWED_HOSTS
+        - name: DB
+          valueFrom:
+            configMapKeyRef:
+              name: healthchecks-configmap
+              key: DB
+        - name: DB_CONN_MAX_AGE
+          valueFrom:
+            configMapKeyRef:
+              name: healthchecks-configmap
+              key: DB_CONN_MAX_AGE
+        - name: DB_HOST
+          valueFrom:
+            configMapKeyRef:
+              name: healthchecks-configmap
+              key: DB_HOST
+        - name: DB_NAME
+          valueFrom:
+            configMapKeyRef:
+              name: healthchecks-configmap
+              key: DB_NAME
+        - name: DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: healthchecks-secret
+              key: DB_PASSWORD
+        - name: DB_PORT
+          valueFrom:
+            configMapKeyRef:
+              name: healthchecks-configmap
+              key: DB_PORT
+        - name: DB_SSLMODE
+          valueFrom:
+            configMapKeyRef:
+              name: healthchecks-configmap
+              key: DB_SSLMODE
+        - name: DB_TARGET_SESSION_ATTRS
+          valueFrom:
+            configMapKeyRef:
+              name: healthchecks-configmap
+              key: DB_TARGET_SESSION_ATTRS
+        - name: DB_USER
+          valueFrom:
+            secretKeyRef:
+              name: healthchecks-secret
+              key: DB_USER
+        - name: DEBUG
+          valueFrom:
+            configMapKeyRef:
+              name: healthchecks-configmap
+              key: DEBUG
+        - name: DEFAULT_FROM_EMAIL
+          valueFrom:
+            configMapKeyRef:
+              name: healthchecks-configmap
+              key: DEFAULT_FROM_EMAIL
+        - name: EMAIL_HOST
+          valueFrom:
+            configMapKeyRef:
+              name: healthchecks-configmap
+              key: EMAIL_HOST
+        - name: EMAIL_HOST_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: healthchecks-secret
+              key: EMAIL_HOST_PASSWORD
+        - name: EMAIL_HOST_USER
+          valueFrom:
+            secretKeyRef:
+              name: healthchecks-secret
+              key: EMAIL_HOST_USER
+        - name: EMAIL_PORT
+          valueFrom:
+            configMapKeyRef:
+              name: healthchecks-configmap
+              key: EMAIL_PORT
+        - name: EMAIL_USE_TLS
+          valueFrom:
+            configMapKeyRef:
+              name: healthchecks-configmap
+              key: EMAIL_USE_TLS
+        - name: EMAIL_USE_VERIFICATION
+          valueFrom:
+            configMapKeyRef:
+              name: healthchecks-configmap
+              key: EMAIL_USE_VERIFICATION
+        - name: MASTER_BADGE_LABEL
+          valueFrom:
+            configMapKeyRef:
+              name: healthchecks-configmap
+              key: MASTER_BADGE_LABEL
+        - name: PING_BODY_LIMIT
+          valueFrom:
+            configMapKeyRef:
+              name: healthchecks-configmap
+              key: PING_BODY_LIMIT
+        - name: PING_EMAIL_DOMAIN
+          valueFrom:
+            configMapKeyRef:
+              name: healthchecks-configmap
+              key: PING_EMAIL_DOMAIN
+        - name: PING_ENDPOINT
+          valueFrom:
+            configMapKeyRef:
+              name: healthchecks-configmap
+              key: PING_ENDPOINT
+        - name: SECRET_KEY
+          valueFrom:
+            secretKeyRef:
+              name: healthchecks-secret
+              key: SECRET_KEY
+        - name: SITE_NAME
+          valueFrom:
+            configMapKeyRef:
+              name: healthchecks-configmap
+              key: SITE_NAME
+        - name: SITE_ROOT
+          valueFrom:
+            configMapKeyRef:
+              name: healthchecks-configmap
+              key: SITE_ROOT
+      serviceAccountName: codepipeline-access
