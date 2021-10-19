@@ -1,0 +1,8 @@
+resources:
+  - ../../base
+images:
+  - name: 630637833070.dkr.ecr.ap-southeast-1.amazonaws.com/healthchecks
+    newName: 970722082474.dkr.ecr.ap-southeast-1.amazonaws.com/healthchecks
+patches:
+  - configmap.yaml
+  - sealedsecrets.yaml

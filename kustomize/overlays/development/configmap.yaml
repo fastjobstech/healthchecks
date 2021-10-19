@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: healthchecks-configmap
+data:
+  ALLOWED_HOSTS: localhost,hc-dev.fastjobs.sg
+  DB_HOST: rds-mysql-fastjobs-encrypt-dev-aurora-cluster.cluster-ca306e69kk8v.ap-southeast-1.rds.amazonaws.com
+  DB_NAME: healthchecksdev
+  PING_ENDPOINT: https://hc-dev.fastjobs.sg/ping/
+  SITE_ROOT: https://hc-dev.fastjobs.sg
