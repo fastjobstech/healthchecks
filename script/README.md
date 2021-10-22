@@ -2,7 +2,7 @@
 
 ## Run create_checks.sh
 1. Get cron details from `console/cron/task.cron`
-2. Form the csv using this format. The last line of the file must be empty
+2. Form the csv using this format. The last line of the file must be empty (Can [delimiter converter](https://onlinecsvtools.com/change-csv-delimiter) to convert from comma to pipe symbol)
 
 `check name|check description (copy the whole line of cron)|cron schedule`
 
