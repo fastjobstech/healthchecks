@@ -2,6 +2,8 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: healthchecks-ingress
+  annotations:
+    alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:ap-southeast-1:970722082474:certificate/b8c690cb-9efe-4966-a2a7-2be47d086e41
 spec:
   rules:
   - host: hc-dev.fastjobs.sg
