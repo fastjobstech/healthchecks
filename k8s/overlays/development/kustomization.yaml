@@ -6,3 +6,4 @@ images:
 patches:
   - configmap.yaml
   - sealedsecrets.yaml
+  - ingress.yaml
