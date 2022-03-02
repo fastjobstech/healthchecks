@@ -5,7 +5,6 @@ metadata:
   labels:
     app: healthchecks
 spec:
-  replicas: 1
   selector:
     matchLabels:
       app: healthchecks
@@ -19,6 +18,10 @@ spec:
         image: 630637833070.dkr.ecr.ap-southeast-1.amazonaws.com/healthchecks
         ports:
         - containerPort: 8000
+        resources:
+          requests:
+            memory: 256Mi
+            cpu: 50m
         imagePullPolicy: Always
         env:
         - name: ALLOWED_HOSTS
@@ -147,3 +150,16 @@ spec:
               name: healthchecks-configmap
               key: SITE_ROOT
       serviceAccountName: codepipeline-access
+---
+apiVersion: autoscaling/v1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: healthchecks-scaler
+spec:
+  scaleTargetRef:
+    kind: Deployment
+    name: healthchecks-deployment
+    apiVersion: apps/v1
+  minReplicas: 2
+  maxReplicas: 5
+  targetCPUUtilizationPercentage: 70
