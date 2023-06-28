@@ -149,7 +149,6 @@ spec:
             configMapKeyRef:
               name: healthchecks-configmap
               key: SITE_ROOT
-      serviceAccountName: codepipeline-access
 ---
 apiVersion: autoscaling/v1
 kind: HorizontalPodAutoscaler
