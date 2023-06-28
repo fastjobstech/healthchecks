@@ -1,4 +1,4 @@
 resources:
   - ../../base
 patches:
-  - ingress.yaml
+  - path: ingress.yaml
