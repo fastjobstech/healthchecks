@@ -9,7 +9,7 @@ data:
   APPRISE_ENABLED: "False"
   DB: mysql
   DB_CONN_MAX_AGE: "0"
-  DB_HOST: rds-mysql-fastjobs-regional-ph-en-aurora-cluster.cluster-cowve0ctr1hy.ap-southeast-1.rds.amazonaws.com
+  DB_HOST: rds-mysql-fastco-cluster.cluster-cowve0ctr1hy.ap-southeast-1.rds.amazonaws.com
   DB_NAME: healthchecks
   DB_PORT: "3368"
   DB_SSLMODE: prefer
