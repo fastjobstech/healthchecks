@@ -2,5 +2,5 @@ resources:
   - ../../base
 patches:
   - path: configmap.yaml
-  - path: sealedsecrets.yaml
+  - path: onepassworditem.yaml
   - path: ingress.yaml
