@@ -28,6 +28,19 @@ spec:
             name: healthchecks-configmap
         - secretRef:
             name: healthchecks-secret
+      tolerations:
+      - key: arm64
+        operator: Exists
+        effect: NoSchedule
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: kubernetes.io/arch
+                operator: In
+                values:
+                - arm64
 ---
 apiVersion: autoscaling/v1
 kind: HorizontalPodAutoscaler
