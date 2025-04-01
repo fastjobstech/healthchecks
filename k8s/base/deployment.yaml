@@ -28,6 +28,8 @@ spec:
             name: healthchecks-configmap
         - secretRef:
             name: healthchecks-secret
+      imagePullSecrets:
+      - name: regcred
       tolerations:
       - key: arm64
         operator: Exists
